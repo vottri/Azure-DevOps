@@ -2,7 +2,7 @@
 
 Azure DevOps (formerly Team Foundation Server (TFS) and Visual Studio Team System (VSTS)) is a Microsoft product that provides version control (either TFVC or Git), reporting, requirements management, project management (for both agile and waterfall teams), automated builds, testing and release management capabilities. It covers the entire application lifecycle, and enables DevOps capabilities.
 
-## Introduction to CI/CD with Azure DevOps
+## Practice CI/CD with Azure DevOps
 
 ### Overview:
 
