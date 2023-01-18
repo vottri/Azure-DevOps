@@ -8,9 +8,9 @@ Azure DevOps (formerly Team Foundation Server (TFS) and Visual Studio Team Syste
 
 In this lab, we will practice:
 
- - Build a web application package in a Continuous Integration (CI) Build Pipeline
+ - Build a .NET web application in a Continuous Integration (CI) Build Pipeline
 
- - Deploy the web application package to Azure VMs with a Continuous Delivery (CD) Release Pipeline
+ - Deploy the .NET web application to Azure VMs with a Continuous Delivery (CD) Release Pipeline
  
 ### Excercises:
 
