@@ -1,6 +1,8 @@
+# Deploy a sample .NET web app on Windows Server virtual machine using AzureDevOps
+
 ============================================================================================
 
-Contents
+**Contents**
 
 [1. Create Azure VM](#1)
 
@@ -22,7 +24,7 @@ Contents
 
 ### Connect to your Virtual Machine
 
-Navigate to "Networking" tab, allow Remote Desktop to the Azure VM in "Inbound port rules" section.
+Navigate to "Networking" tab > "Inbound port rules" section, allow your VM's ports 80, 443, 3389 to be accessible from the Internet.
 
 ![vm2](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/vm2.png)
 
@@ -152,7 +154,7 @@ On the "Select a source" page, choose "Github", leave everything as default and 
 
 Visit GitHub and sign into your account. Click on your user icon in the upper-right hand corner and select Settings from the drop down menu.
 
-On the page that follows, locate the Developer settings section on the left-hand menu and click Personal access tokens. Choose Tokens (classic).
+On the page that follows, locate the **Developer settings** section on the left-hand menu and click Personal access tokens. Choose Tokens (classic).
 
 ![gh1](https://raw.githubusercontent.com/vottri/CICD-pipeline-with-Jenkins/main/images1/gh1.png)
 
@@ -164,7 +166,7 @@ Give your token a name refer to your intergration with Azure DevOps.
 
 ![ci4-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci4-1.png)
 
-In the Select Scopes section, choose the same as below:
+In the **Select Scopes** section, choose the same as below:
 
 ![gh3](https://raw.githubusercontent.com/vottri/CICD-pipeline-with-Jenkins/main/images1/gh3.png)
  
@@ -186,7 +188,7 @@ On the "Select a template", select "ASP.NET Core" and click "Apply".
 
 ![ci6](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci6.png)
 
-Give your new pipeline a name. Navigate to "Tasks" tab > Pipeline. In the "Agent Specification" section, choose "windows-2019".
+Give your new pipeline a name. Navigate to "Tasks" tab > Pipeline. In the **Agent Specification** section, choose "windows-2019".
 
 ![ci7](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci7.png)
 
@@ -232,7 +234,7 @@ Give your stage a name.
 
 ![cd3](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd3.png)
 
-Give your release pipeline a name, then in the "Artifact" session, click "Add".
+Give your release pipeline a name, then in the **Artifacts** section, click "Add" to add the artifacts from your build Pipeline to this Release.
 
 ![cd4](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd4.png)
 
@@ -240,40 +242,58 @@ Select your build pipeline from "Source (build pipeline)". This point to the pac
 
 ![cd5](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd5.png)
 
+Next move over to the **Stages** section, click on "1 job, 2 tasks".
 
 ![cd6](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd6.png)
 
+In the "Deploy to AzureVM" stage, leave everything as default.
+
 ![cd7](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd7.png)
 
+Go down to the "IIS deployment" job. In the **Deployment targets** section, point to the deployment group you created earlier.
+
 ![cd8](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd8.png)
+
+Leave everything else as default. 
 
 ![cd9](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd9.png)
 
 ![cd10](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd10.png)
 
+Click "Save" then click OK.
+
 ![cd11](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd11.png)
+
+Click "Create release".
 
 ![cd12](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd12.png)
 
+There is nothing to change in "Create a new release" page. Just click "Create". Azure release pipeline will pick up an artifact and deploy toward your virtual machine.
+
 ![cd13](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd13.png)
+
+A release has been created. Click on "Release-1" for more details.
 
 ![cd14](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd14.png)
 
+In the **Stages** section, it shows that there is one target which are in the deployment process. Click on "Logs" 
+
 ![cd15-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd15-1.png)
 
+This page will show the status of the deployment. Click on the name off your virtual machine.
 
 ![cd16](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd16.png)
 
+The release pipeline has successfully completed. Head over to your virtual machine to check the results.
 
 ![cd17](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd17.png)
 
+Open IIS Manager, click on "Default Web Site" and switch to "Content View". 
 
 ![cd18](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd18.png)
 
-
-![cd19](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd19.png)
-
+Open a web browser, access your website with your VM's public IP Address.
 
 ![cd20](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd20.png)
 
-
+Now, we finish deploying a web application onto a virtual machine by using Azure DevOps.
