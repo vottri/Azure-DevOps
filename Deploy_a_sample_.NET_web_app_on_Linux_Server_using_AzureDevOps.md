@@ -117,15 +117,16 @@ On the "Select a template", select "ASP.NET Core" and click "Apply".
 
 ![ci6](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci6.png)
 
-Give your new pipeline a name. Navigate to "Tasks" tab > Pipeline. In the **Agent Specification** section, choose "windows-2019".
+Give your new pipeline a name. Navigate to "Tasks" tab > Pipeline. In the **Agent Specification** section, choose "ubuntu-20.04".
 
-![ci7](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci7.png)
+![ci7](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/ci7.png)
+
 
 Check your Github repository.
 
 ![ci8](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci8.png)
 
-Leave everything else in "Agent job 1" as default. Click "Save and queue".
+Click on "Agent job 1". Rename this to "Build .NET web app"
 
 ![ci9](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci9.png)
 
