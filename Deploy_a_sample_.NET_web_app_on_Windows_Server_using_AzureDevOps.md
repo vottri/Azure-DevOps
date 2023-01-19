@@ -4,13 +4,13 @@ Contents
 
 [1. Create Azure VM](#1)
 
-[2. Create Deployment Group](#2)
+[2. Set up Azure DevOps](#2)
 
-[3. Create the Azure DevOps Build Pipeline](#3)
+[3. Create Deployment Group](#3)
 
-[4. Create the Azure DevOps Release Pipeline](#4)
+[4. Create the Azure DevOps Build Pipeline](#4)
 
-[5. web](#5)
+[5. Create the Azure DevOps Release Pipeline](#5)
 
 ============================================================================================
 
@@ -26,13 +26,13 @@ Navigate to "Networking" tab, allow Remote Desktop to the Azure VM in "Inbound p
 
 ![vm2](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/vm2.png)
 
-Go back to "Overview" tab, click "Connect", select "RDP". In the new page, Select "Download RDP File".
+In the left menu, go down to "Connect" tab, select "RDP". In the "Connect with RDP" page, Select "Download RDP File".
 
 ![vm3](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/vm3.png)
 
 Open the downloaded RDP file and select **Connect** when prompted. 
 
-In the Windows Security window, enter the **user name and password** when you created Azure VM ealier.
+In the Windows Security window, enter the **user name** and **password** when you created Azure VM ealier.
 
 ![vm4](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/vm4.png)
 
@@ -44,9 +44,9 @@ Select **Yes** to verify the identity of the virtual machine and finish logging 
 
 Inside the virtual machine:
 
-On Windows Server, go to Server Manager. Click on the "Add roles and features" on the dashboard. Click ***Next*** to proceed.
+On Windows Server, go to Server Manager. Click on the "Add roles and features" on the dashboard. Click **Next** to proceed.
 
-Select "Role-based or feature-based installation", and then click ***Next***.
+Select "Role-based or feature-based installation", and then click **Next**.
 
 Select the server.
 
@@ -86,7 +86,7 @@ Click "Close" once it has been installed successfully.
 
 ![dotnet5](https://github.com/vottri/CICD-pipeline-with-Jenkins/blob/main/images1/dotnet5.png)
 
-Set up Azure Devops
+## 2. Set up Azure DevOps <a name="2"></a>
 
 Open the Azure Portal, log on with your account. Type "azure devops" in the Azure Portal search bar. Click "Azure Devops organizations".
 
@@ -108,71 +108,135 @@ You are inside and ready to start a full development project, including: backlog
 
 ![dev5](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/dev5.png)
 
-## 2. Create Deployment Group <a name="2"></a>
+## 3. Create Deployment Group <a name="3"></a>
+
+A deployment group is a logical set of deployment target machines that have agents installed on each one. Every machine of the deployment group interacts with Azure Pipelines to coordinate the deployment tasks.
+
+You have already created a virtual machine. Now, you have to install an agent on the virtual machine which will make it connect to your particular Azure DevOps Project.
+
+In your Azue Devops Project page, select "Pipelines" > "Deployment groups", then click on "Add a deployment group".
 
 ![dg1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/dg1.png)
 
+Enter a Deployment group name and then select "Create". 
+
 ![dg2](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/dg2.png)
+
+A registration script will be generated. Select the "Type of target to register" and then select "Use a personal access token in the script for authentication". Finally, select "Copy script to the clipboard".
 
 ![dg3](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/dg3.png)
 
+Log onto your target virtual machine. Run Powershell as administrator and paste the script you copied. Hit "Enter" to run the script. This will register your virtual machine as a target server for deployment. 
+
 ![dg4](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/dg4.png)
 
-![dg5](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/dg5.png)
+When prompted for username and password, enter the username and password you used to log onto this particular virtual machine. If the result looks like this, you have successfully installed the agent on this virtual machine.
 
+![dg5-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/dg5-1.png)
 
-## 3. Create the Azure DevOps Build Pipeline <a name="3"></a>
+## 4. Create the Azure DevOps Build Pipeline <a name="4"></a>
+
+In Azure DevOps, go to your project page:
+
+From the left pane, select "Pipelines", then select "Create Pipeline".
 
 ![ci1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci1.png)
 
+Click on "Use the classis editor to create a pipeline without YAML".
 
 ![ci2](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci2.png)
 
+On the "Select a source" page, choose "Github", leave everything as default and click "Authorize with a Github personal access token".
 
 ![ci3](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci3.png)
 
+Visit GitHub and sign into your account. Click on your user icon in the upper-right hand corner and select Settings from the drop down menu.
+
+On the page that follows, locate the Developer settings section on the left-hand menu and click Personal access tokens. Choose Tokens (classic).
+
+![gh1](https://raw.githubusercontent.com/vottri/CICD-pipeline-with-Jenkins/main/images1/gh1.png)
+
+Click on Generate new token button on the next page. Also choose Generate new token (classic).
+
+![gh2](https://raw.githubusercontent.com/vottri/CICD-pipeline-with-Jenkins/main/images1/gh2.png)
+
+Give your token a name refer to your intergration with Azure DevOps. 
+
+![ci4-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci4-1.png)
+
+In the Select Scopes section, choose the same as below:
+
+![gh3](https://raw.githubusercontent.com/vottri/CICD-pipeline-with-Jenkins/main/images1/gh3.png)
+ 
+When you are finished, click Generate token at the bottom.
+
+You get a token.
+
+![gh4](https://raw.githubusercontent.com/vottri/CICD-pipeline-with-Jenkins/main/images1/gh4.png)
+ 
+Copy the token to clipboard. Go back to Azure DevOps, paste it inside the "Token" box then click "Authorize".
 
 ![ci4](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci4.png)
 
+Provide the Github repository and its branch (where your .NET sample code is), then click "Continue".
+
 ![ci5](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci5.png)
 
+On the "Select a template", select "ASP.NET Core" and click "Apply".
 
 ![ci6](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci6.png)
 
+Give your new pipeline a name. Navigate to "Tasks" tab > Pipeline. In the "Agent Specification" section, choose "windows-2019".
 
 ![ci7](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci7.png)
 
+Check your Github repository.
 
 ![ci8](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci8.png)
 
+Leave everything else in "Agent job 1" as default. Click "Save and queue".
 
 ![ci9](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci9.png)
 
+Click "Save and run".
 
 ![ci10](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci10.png)
 
+As soon as the agent is available, your build pipeline will start running. Click "Agent job 1" to view more details.
 
 ![ci11](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci11.png)
 
+In here, you see the steps that the build pipeline created. It fetches source code from GitHub, restore the neccesary packages, then builds and publishes the app.
 
 ![ci12](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci12.png)
 
+When your pipeline completes, you can go back and view the package. Click on "1 published".
 
-![ci13](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci13.png)
+![ci13-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci13-1.png)
 
-
+And this is where your package is. You will need it for deployment toward Azure VM.
 
 ![ci14](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/ci14.png)
 
-## 4. Create the Azure DevOps Release Pipeline <a name="4"></a>
+## 5. Create the Azure DevOps Release Pipeline <a name="5"></a>
+
+Inside Azure DevOps project page, go to Pipelines > Releases. Click "New pipeline" button to start the creation process.
 
 ![cd1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd1.png)
 
+On the "Select a template" page, type "IIS" in the Search bar. Scroll down, choose "IIS website deployment" and click Apply.
+
 ![cd2](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd2.png)
+
+Give your stage a name.
 
 ![cd3](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd3.png)
 
+Give your release pipeline a name, then in the "Artifact" session, click "Add".
+
 ![cd4](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd4.png)
+
+Select your build pipeline from "Source (build pipeline)". This point to the package you received from that build pipeline. When you are ready, click "Add".
 
 ![cd5](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd5.png)
 
@@ -195,7 +259,8 @@ You are inside and ready to start a full development project, including: backlog
 
 ![cd14](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd14.png)
 
-![cd15](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd15.png)
+![cd15-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd15-1.png)
+
 
 ![cd16](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd16.png)
 
