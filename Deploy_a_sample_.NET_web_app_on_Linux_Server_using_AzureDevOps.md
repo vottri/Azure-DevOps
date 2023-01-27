@@ -278,109 +278,77 @@ Inside Azure DevOps project page, go to Pipelines > Releases. Click "New pipelin
 
 ![cd1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd1.png)
 
-On the "Select a template" page, type "IIS" in the Search bar. Scroll down, choose "IIS website deployment" and click Apply.
+On the "Select a template" page, click "Empty job".
 
-![cd2](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd2.png)
+![lcd0](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd0.png)
 
 Give your stage a name.
 
-![cd3](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd3.png)
-
-Give your release pipeline a name, then in the **Artifacts** section, click "Add" to add the artifacts from your build Pipeline to this Release.
-
-![cd4](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd4.png)
-
-Select your build pipeline from "Source (build pipeline)". This point to the package you received from that build pipeline. When you are ready, click "Add".
-
-![cd5](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd5.png)
-
-Next move over to the **Stages** section, click on "1 job, 2 tasks".
-
-![cd6](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd6.png)
-
-In the "Deploy to AzureVM" stage, leave everything as default.
-
-![cd7](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd7.png)
-
-Go down to the "IIS deployment" job. In the **Deployment targets** section, point to the deployment group you created earlier.
-
-![cd8](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd8.png)
-
-Leave everything else as default. 
-
-![cd9](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd9.png)
-
-![cd10](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd10.png)
-
-Click "Save" then click OK.
-
-![cd11](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd11.png)
-
-Click "Create release".
-
-![cd12](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd12.png)
-
-There is nothing to change in "Create a new release" page. Just click "Create". Azure release pipeline will pick up an artifact and deploy toward your virtual machine.
-
-![cd13](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd13.png)
-
-A release has been created. Click on "Release-1" for more details.
-
-![cd14](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd14.png)
-
-In the **Stages** section, it shows that there is one target which are in the deployment process. Click on "Logs" 
-
-![cd15-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd15-1.png)
-
-This page will show the status of the deployment. Click on the name off your virtual machine.
-
-![cd16](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd16.png)
-
-The release pipeline has successfully completed. Head over to your virtual machine to check the results.
-
 ![lcd1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd1.png)
 
+In the **Artifacts** section, click "Add" to add the artifacts from your build Pipeline to this Release.
 
 ![lcd2](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd2.png)
 
+Select your build pipeline from "Source (build pipeline)". This point to the package you received from that build pipeline. When you are ready, click "Add".
 
 ![lcd3](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd3.png)
 
+Next click the **Continous Deployment Trigger** button.
 
 ![lcd4](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd4.png)
 
+Choose **Enabled** and include your repository. This will help trigger the "release pipeline" everytime a new build is available from the "build pipeline".
 
 ![lcd5](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd5.png)
 
+Next move over to the **Stages** section, click on "1 job, 0 tasks".
 
 ![lcd6](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd6.png)
 
+Give your release pipeline a name.
 
 ![lcd7](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd7.png)
 
+Give your **Agent job** a name and change **Agent specification** to "ubuntu-20.04".
 
 ![lcd8](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd8.png)
 
+Start adding tasks to your release pipeline.
+
 ![lcd9](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd9.png)
 
+In the **Add tasks** page, type "ssh" in the search bar, select **SSH** and click **Add**.
 
 ![lcd10](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd10.png)
 
+Click "Manage" to set up a "SSH service connection".
 
 ![lcd11](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd11.png)
 
+In the **Service connections** page, click the **New service connection** button.
 
 ![lcd12](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd12.png)
 
+Type "ssh" in the search bar, choose **SSH** and then click **Next**.
 
 ![lcd13](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd13.png)
 
+Enter you Linux machine's Public IP Address.
+
+
+
+Scroll down. Fill in your Linux machine's login username and password. Give your service connection a name. After you are ready, click **Save**.
 
 ![lcd15](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd15.png)
 
+The SSH Connection to your Linux machine has been created.
 
 ![lcd16](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd16.png)
 
+Go back to your release pipeline. in the **SSH service connection** section, choose "SSH to ub01" (the one you just created).
+
+In the **Commands** section. Add the command for creating a directory on the Linux machine where you deploy your web application.
 
 ![lcd17](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd17.png)
 
@@ -401,3 +369,16 @@ The release pipeline has successfully completed. Head over to your virtual machi
 
 ![lcd26](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd26.png)
 
+
+
+![cd14](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd14.png)
+
+In the **Stages** section, it shows that there is one target which are in the deployment process. Click on "Logs" 
+
+![cd15-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd15-1.png)
+
+This page will show the status of the deployment. Click on the name off your virtual machine.
+
+![cd16](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd16.png)
+
+The release pipeline has successfully completed. Head over to your virtual machine to check the results.
