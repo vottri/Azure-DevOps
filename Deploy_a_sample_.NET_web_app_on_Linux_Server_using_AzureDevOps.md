@@ -19,7 +19,13 @@
 
 ### Create a Linux Server Virtual Machine on Azure (OS: Ubuntu 20.04)
 
+![ub1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/ub1.png)
 
+![ub2](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/ub2.png)
+
+![ub3](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/ub3.png)
+
+![ub4](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/ub4.png)
 
 ### Connect to your Virtual Machine
 
@@ -262,6 +268,20 @@ Commit changes after you edited it.
 
 ![lci9](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lci9.png)
 
+![lci10](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lci10.png)
+
+
+![lci10-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lci10-1.png)
+
+
+![lci10-2](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lci10-2.png)
+
+
+![lci10-3](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lci10-3.png)
+
+
+![lci10-4](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lci10-4.png)
+
 Click "Save and run".
 
 
@@ -293,7 +313,7 @@ On the "Select a template" page, click "Empty job".
 
 Give your stage a name.
 
-![lcd1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd1.png)
+![lcd1-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd1-1.png)
 
 In the **Artifacts** section, click "Add" to add the artifacts from your build Pipeline to this Release.
 
@@ -345,7 +365,7 @@ Type "ssh" in the search bar, choose **SSH** and then click **Next**.
 
 Enter you Linux machine's Public IP Address.
 
-
+![lcd14](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd14.png)
 
 Scroll down. Fill in your Linux machine's login username and password. Give your service connection a name. After you are ready, click **Save**.
 
@@ -362,32 +382,73 @@ In the **Commands** section. Add the command for creating a directory on the Lin
 ![lcd17](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd17.png)
 
 
-![lcd18](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd18.png)
+![lcd18-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd18-1.png)
 
 ![lcd19](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd19.png)
 
-![lcd20](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd20.png)
+![lcd21-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd21-1.png)
 
-![lcd21](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd21.png)
+![lcd21-2](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd21-2.png)
 
-![lcd22](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd22.png)
+![lcd22-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd22-1.png)
 
 ![lcd23](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd23.png)
 
-![lcd24](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd24.png)
+![lcd24-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd24-1.png)
 
-![lcd26](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd26.png)
+![lcd25](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd25.png)
+
+![lcd26-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd26-1.png)
 
 
+![lcd27](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd27.png)
 
-![cd14](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd14.png)
+![lcd28](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd28.png)
+
+![lcd29](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd29.png)
+
+![lcd30](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd30.png)
+
+![lcd31](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd31.png)
+
+![lcd32](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd32.png)
+
+![lcd33](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd33.png)
+
+
+![lcd34](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd34.png)
+
+![lcd35](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd35.png)
+
+![lcd36](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd36.png)
+
+![lcd37](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd37.png)
+
+![lcd38](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd38.png)
+
+![lcd39](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd39.png)
+
 
 In the **Stages** section, it shows that there is one target which are in the deployment process. Click on "Logs" 
 
-![cd15-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd15-1.png)
 
 This page will show the status of the deployment. Click on the name off your virtual machine.
 
-![cd16](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/cd16.png)
-
 The release pipeline has successfully completed. Head over to your virtual machine to check the results.
+
+
+
+
+
+
+![web1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web1.png)
+
+![web2](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web2.png)
+
+![web3](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web3.png)
+
+![web4](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web4.png)
+
+![web5](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web5.png)
+
+![web6](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web6.png)
