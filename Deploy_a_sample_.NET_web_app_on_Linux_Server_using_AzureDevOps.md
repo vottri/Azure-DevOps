@@ -13,6 +13,8 @@
 
 [4. Create the Azure DevOps Release Pipeline](#4)
 
+[5. Continuous Integration and Continuous Delivery with Azure Pipelines](#5)
+
 ============================================================================================
 
 ## 1. Create Azure VM <a name="1"></a>
@@ -21,21 +23,29 @@
 
 ![ub1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/ub1.png)
 
+### Connect to your Virtual Machine
+
+Navigate to "Networking" tab > "Inbound port rules" section, allow your VM's ports 80, 443, 22 to be accessible from the Internet.
+
 ![ub2](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/ub2.png)
+
+Use **PuTTY** for connecting to the Linux Virtual Machine. Enter your Linux machine's public IP address in Host Name and Port will be 22. Click on **Open** button to connect.
 
 ![ub3](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/ub3.png)
 
+When you are inside the Linux VMs:
+
 ![ub4](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/ub4.png)
 
-### Connect to your Virtual Machine
-
-
+Check for working Internet connection.
 
 Update your system
 
 ```sh
 sudo apt-get update
 ```
+
+Install some required packages:
 
 ```sh
 sudo apt-get -y install wget apt-transport-https
@@ -57,7 +67,7 @@ rm packages-microsoft-prod.deb
 sudo apt-get update
 sudo apt-get install -y aspnetcore-runtime-3.1 
 ```
-dotnet --list-runtimes
+![dotnet](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/dotnet.png)
 
 ### Create a systemd file for your web application (run your webapp as a service).
 
@@ -147,6 +157,8 @@ Restart nginx server.
 ```sh
 sudo systemctl restart nginx
 ```
+
+![web3](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web3.png)
 
 ## 2. Set up Azure DevOps <a name="2"></a>
 
@@ -268,34 +280,25 @@ Commit changes after you edited it.
 
 ![lci9](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lci9.png)
 
+The build should be on it way shortly after the commit. Select **Pipelines** on the left pane menu to see if it’s in progress.
+
 ![lci10](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lci10.png)
 
+As soon as the agent is available, your build pipeline will start running. Click the build to track it.
 
 ![lci10-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lci10-1.png)
 
+The build has just finished successfully. You can review your build tasks by clicking "Build sample .NET app".
 
 ![lci10-2](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lci10-2.png)
 
+You can review console output per task, just choose the task you want to check and scroll the right pane to view its logs.
 
 ![lci10-3](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lci10-3.png)
 
+You can return to the summary view by clicking the back button. Click on "1 published" and you can view the package your pipeline just built. 
 
 ![lci10-4](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lci10-4.png)
-
-Click "Save and run".
-
-
-As soon as the agent is available, your build pipeline will start running. Click "Agent job 1" to view more details.
-
-
-
-In here, you see the steps that the build pipeline created. It fetches source code from GitHub, restore the neccesary packages, then builds and publishes the app.
-
-
-
-When your pipeline completes, you can go back and view the package. Click on "1 published".
-
-
 
 And this is where your package is. You will need it for deployment toward Azure VM.
 
@@ -375,52 +378,119 @@ The SSH Connection to your Linux machine has been created.
 
 ![lcd16](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd16.png)
 
-Go back to your release pipeline. in the **SSH service connection** section, choose "SSH to ub01" (the one you just created).
+Go back to your release pipeline. Give your task a name.
+
+In the **SSH service connection** section, choose "SSH to ub01" (the one you just created).
 
 In the **Commands** section. Add the command for creating a directory on the Linux machine where you deploy your web application.
 
 ![lcd17](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd17.png)
 
+Add another task. In the **Add tasks** page, type "ssh" in the search bar, select **Copy file over SSH** and click **Add**.
+
+![lcd18](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd18.png)
+
+Give your task a name. In the **Source folder** section, click the **Browse** button.
 
 ![lcd18-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd18-1.png)
 
+Point to the package you received from the build pipeline.
+
 ![lcd19](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd19.png)
+
+In the **Target folder** section, point to the directory you just created in the above task so the pipeline can transfer the package over your Linnux machine.
+
+![lcd20](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd20.png)
+
+Add another task. In the **Add tasks** page, type "ssh" in the search bar, select **SSH** and click **Add**.
 
 ![lcd21-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd21-1.png)
 
+Give your task a name. In the **Commands** section. Add the command for making the DevOpsWeb file executable.
+
 ![lcd21-2](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd21-2.png)
+
+After you are ready, click **Save**.
 
 ![lcd22-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd22-1.png)
 
+Click OK.
+
 ![lcd23](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd23.png)
+
+Click **Create release**.
 
 ![lcd24-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd24-1.png)
 
+Leave everything as default and click **Create**.
+
 ![lcd25](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd25.png)
+
+A release has been created. Click on "Release-1" for more details.
 
 ![lcd26-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd26-1.png)
 
+Depending on load, the build may need to wait in the queue for a moment.
+
+In the **Stages** section, it shows that there are 3 tasks in the deployment process. 
 
 ![lcd27](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd27.png)
 
+The deployment process should eventually succeed. Click on "Logs" to view more details.
+
 ![lcd28](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd28.png)
+
+Just like with the build pipeline, this page show the status of the deployment process's tasks, you can review the logs of each of your tasks here.
 
 ![lcd29](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd29.png)
 
+The release pipeline has successfully completed. Head over to your virtual machine to check the results.
+
 ![lcd30](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd30.png)
+
+When you are inside your Linux machine:
+
+You can check your web app directory.
+
+![web1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web1.png)
+
+Check your web app service.
+
+![web2](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web2.png)
+
+Or check the status of your nginx server.
+
+![web3](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web3.png)
+
+After you are ready, open up a web browser and access your website by using your Linux machine's Public Ip Address.
+
+![web4](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web4.png)
+
+## 5. Continuous Integration and Continuous Delivery with Azure Pipelines  <a name="5"></a>
+
+![web5](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web5.png)
 
 ![lcd31](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd31.png)
 
+You should now see that a new build (note the **.2**) is in progress and that it was triggered by your change. Click the build to track it. 
+
 ![lcd32](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd32.png)
+
+This build should run and succeed just like the previous build. It also gives a new package for deployment.
 
 ![lcd33](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd33.png)
 
+On the left pane menu, click **Pipelines** > **Release**. You can see your release pipeline has also been triggered because of the new artifact it received from the build pipeline.
 
 ![lcd34](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd34.png)
 
 ![lcd35](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd35.png)
 
+The new release pipeline has successfully completed.
+
 ![lcd36](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd36.png)
+
+
 
 ![lcd37](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd37.png)
 
@@ -428,27 +498,6 @@ In the **Commands** section. Add the command for creating a directory on the Lin
 
 ![lcd39](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd39.png)
 
-
-In the **Stages** section, it shows that there is one target which are in the deployment process. Click on "Logs" 
-
-
-This page will show the status of the deployment. Click on the name off your virtual machine.
-
-The release pipeline has successfully completed. Head over to your virtual machine to check the results.
-
-
-
-
-
-
-![web1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web1.png)
-
-![web2](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web2.png)
-
-![web3](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web3.png)
-
-![web4](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web4.png)
-
-![web5](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web5.png)
+Just refresh your web page again.
 
 ![web6](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web6.png)
