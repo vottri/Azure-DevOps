@@ -25,6 +25,15 @@
 
 
 
+Update your system
+
+```sh
+sudo apt-get update
+```
+
+```sh
+sudo apt-get -y install wget apt-transport-https
+```
 
 ### Install ASP.NET Core Runtime 3.1 
 
@@ -54,15 +63,15 @@ sudo nano /etc/systemd/system/devopsweb.service
 
 ```sh
 [Unit]
-Description=Example .NET Web App running on Ubuntu 
+Description=Example .NET Web App running on Ubuntu
 
 [Service]
-WorkingDirectory=/www/devopsweb/
-ExecStart=/www/devopsweb/DevOpsWeb
+WorkingDirectory=/home/cloud_user/devopsweb/
+ExecStart=/home/cloud_user/devopsweb/DevOpsWeb
 Restart=always
 RestartSec=10
 KillSignal=SIGINT
-User=jenkins
+User=cloud_user
 Environment=ASPNETCORE_ENVIRONMENT=Production
 Environment=ASPNETCORE_URLS=http://*:5000
 
@@ -103,7 +112,7 @@ server {
     listen 80;
     server_name 127.0.0.1;
     location / {
-        proxy_pass         https://127.0.0.1:5000;
+        proxy_pass         http://127.0.0.1:5000;
         proxy_http_version 1.1;
         proxy_set_header   Upgrade $http_upgrade;
         proxy_set_header   Connection keep-alive;
@@ -219,7 +228,7 @@ Head over to the **Triggers** tab. Choose **Enable continous intergration** so t
 
 ![lci1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lci1.png)
 
-Click on "Agent job 1". Rename this to "Build sample .NET app"
+Go back to the **Tasks** tab, click on "Agent job 1". Rename this to "Build sample .NET app"
 
 ![lci2](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lci2.png)
 
@@ -310,7 +319,7 @@ Give your release pipeline a name.
 
 ![lcd7](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd7.png)
 
-Give your **Agent job** a name and change **Agent specification** to "ubuntu-20.04".
+Give your **Agent job** a name. In **Agent pool** section, select "Azure pipelines" then change **Agent specification** to "ubuntu-20.04".
 
 ![lcd8](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd8.png)
 
