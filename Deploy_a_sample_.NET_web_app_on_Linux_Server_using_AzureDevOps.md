@@ -13,7 +13,7 @@
 
 [4. Create the Azure DevOps Release Pipeline](#4)
 
-[5. Continuous Integration and Continuous Delivery with Azure Pipelines](#5)
+[5. Continuous Integration and Continuous Deployment with Azure Pipelines](#5)
 
 ============================================================================================
 
@@ -386,7 +386,7 @@ In the **Commands** section. Add the command for creating a directory on the Lin
 
 ![lcd17](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd17.png)
 
-Add another task. In the **Add tasks** page, type "ssh" in the search bar, select **Copy file over SSH** and click **Add**.
+Add another task. In the **Add tasks** page, type "ssh" in the search bar, select **Copy files over SSH** and click **Add**.
 
 ![lcd18](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd18.png)
 
@@ -468,7 +468,13 @@ After you are ready, open up a web browser and access your website by using your
 
 ## 5. Continuous Integration and Continuous Delivery with Azure Pipelines  <a name="5"></a>
 
+Visit your Github repository. Make some minor changes to your source code, by tweaking the contents of the document. 
+
+![web5-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web5-1.png)
+
 ![web5](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web5.png)
+
+Make sure to commit after you edit it. This will trigger the build pipeline in Azure Devops. Select **Pipelines** > **Pipelines** to see if it’s already started.
 
 ![lcd31](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd31.png)
 
@@ -484,13 +490,15 @@ On the left pane menu, click **Pipelines** > **Release**. You can see your relea
 
 ![lcd34](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd34.png)
 
+Click on **Release-2** to access your running release pipeline. The deployment tasks are in process.
+
 ![lcd35](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd35.png)
 
-The new release pipeline has successfully completed.
+The new release pipeline has successfully completed. If you want to review a specific task, you can just click on it in the right pane and view its logs.
 
 ![lcd36](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd36.png)
 
-
+As you can see, your pipeline was configured to support continuous integration and continuous deployment. After you make some changes in the source code for this project, Azure Devops can help you automate the build-release process, allow new build to be released with just one button push.
 
 ![lcd37](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd37.png)
 
@@ -498,6 +506,6 @@ The new release pipeline has successfully completed.
 
 ![lcd39](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/lcd39.png)
 
-Just refresh your web page again.
+Just refresh your web page again to check the result.
 
 ![web6](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web6.png)
