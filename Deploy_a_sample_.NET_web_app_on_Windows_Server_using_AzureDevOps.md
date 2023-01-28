@@ -20,13 +20,13 @@
 
 ### Create a Windows Server Virtual Machine on Azure (OS: Windows Server 2019 Datacenter)
 
-![vm1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/vm1.png)
+![vm1-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/vm1-1.png)
 
 ### Connect to your Virtual Machine
 
 Navigate to "Networking" tab > "Inbound port rules" section, allow your VM's ports 80, 443, 3389 to be accessible from the Internet.
 
-![vm2](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/vm2.png)
+![vm2-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/vm2-1.png)
 
 In the left menu, go down to "Connect" tab, select "RDP". In the "Connect with RDP" page, Select "Download RDP File".
 
