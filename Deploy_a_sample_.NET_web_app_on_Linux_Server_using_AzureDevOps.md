@@ -466,7 +466,7 @@ After you are ready, open up a web browser and access your website by using your
 
 ![web4](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/web4.png)
 
-## 5. Continuous Integration and Continuous Delivery with Azure Pipelines  <a name="5"></a>
+## 5. Continuous Integration and Continuous Deployment with Azure Pipelines  <a name="5"></a>
 
 Visit your Github repository. Make some minor changes to your source code, by tweaking the contents of the document. 
 
