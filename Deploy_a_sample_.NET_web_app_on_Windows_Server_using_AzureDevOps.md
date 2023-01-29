@@ -18,6 +18,8 @@
 
 ## 1. Create Azure VM <a name="1"></a>
 
+Login to Azure portal with your Microsoft Azure account.
+
 ### Create a Windows Server Virtual Machine on Azure (OS: Windows Server 2019 Datacenter)
 
 ![vm1-1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images1/vm1-1.png)
