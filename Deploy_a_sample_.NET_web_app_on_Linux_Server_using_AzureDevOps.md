@@ -19,6 +19,8 @@
 
 ## 1. Create Azure VM <a name="1"></a>
 
+Login to Azure portal with your Microsoft Azure account.
+
 ### Create a Linux Server Virtual Machine on Azure (OS: Ubuntu 20.04)
 
 ![ub1](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/ub1.png)
