@@ -46,7 +46,7 @@ Select **Yes** to verify the identity of the virtual machine and finish logging 
 
 ### Installing IIS Server
 
-Inside the virtual machine:
+When you are inside the remote Windows Server virtual machine:
 
 On Windows Server, go to Server Manager. Click on the "Add roles and features" on the dashboard. Click **Next** to proceed.
 
