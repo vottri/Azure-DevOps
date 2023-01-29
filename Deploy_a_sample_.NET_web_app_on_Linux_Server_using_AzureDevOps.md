@@ -33,7 +33,7 @@ Use **PuTTY** for connecting to the Linux Virtual Machine. Enter your Linux mach
 
 ![ub3](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/ub3.png)
 
-When you are inside the Linux VMs:
+When you are inside the Linux VM.
 
 ![ub4](https://raw.githubusercontent.com/vottri/Azure-DevOps/main/images2/ub4.png)
 
